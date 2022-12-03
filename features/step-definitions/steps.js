@@ -5,39 +5,30 @@ Given('I am on the home page', async () => {
 })
 
 When('Modal shows up', async () => {
-	const $modal = await $('#modal-Website > div.modal-dialog.modal-dialog-centered > div > div > a > img')
-	await $modal.isDisplayed()
+	const modal = await $('#modal-Website')
+	await modal.isDisplayed()
 })
 
-Then('I click on close button', async () => {
-	const $button = await $('#modal-Website > div.modal-dialog.modal-dialog-centered > div > button')
-	const $modal = await $('#modal-Website > div.modal-dialog.modal-dialog-centered > div > div > a > img')
-	await $modal.isDisplayed(async () => {
-		await $button.isDisplayed(async () => {
-			await $button.click()
-		})
+Then('I refresh the main page', async () => {
+	const modal = await $('#modal-Website')
+	await modal.isDisplayed(async () => {
+		await browser.refresh()
 	})
 })
 
 When('I click on search bar', async () => {
-	const input = await $(
-		'#app > header > div.page-content-inner > div:nth-child(1) > div.section-left.auto-flex > div.header2021-search.auto-flex > form > div > div.header2021-search-box.auto-flex'
-	)
+	const input = await $('div.header2021-search-box.auto-flex')
 	await input.click()
 })
 
 Then('I type windows in search bar', async () => {
-	const input = await $(
-		'#app > header > div.page-content-inner > div:nth-child(1) > div.section-left.auto-flex > div.header2021-search.auto-flex.is-active > form > div > div.header2021-search-box.auto-flex > input[type=search]'
-	)
+	const input = await $('input[type=search]')
 	await $(input).waitForDisplayed()
 	await $(input).addValue('windows')
 })
 
 Then('I click the search button', async () => {
-	const button = await $(
-		'#app > header > div.page-content-inner > div:nth-child(1) > div.section-left.auto-flex > div.header2021-search.auto-flex.is-active > form > div > div.header2021-search-button > button'
-	)
+	const button = await $('div.header2021-search-button > button')
 	await $(button).waitForDisplayed()
 	await button.click()
 })
@@ -47,7 +38,7 @@ Then('I am on result page', async () => {
 })
 
 Then('At least one item shows up', async () => {
-	const cell = await $('#item_cell_32-350-881_1_0')
+	const cell = await $('#item_cell_32-351-748_1_0')
 	await expect(cell).toBeExisting()
 })
 
@@ -63,9 +54,7 @@ Then('I am on todays best deals tab', async () => {
 })
 
 Then('I click on internet shop logo', async () => {
-	const button = await $(
-		'#app > header > div.page-content-inner > div:nth-child(1) > div.section-left.auto-flex > div.header2021-logo > a > img'
-	)
+	const button = await $('div.header2021-logo')
 	await button.click()
 })
 

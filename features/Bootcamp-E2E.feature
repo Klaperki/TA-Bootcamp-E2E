@@ -3,7 +3,7 @@ Feature: Bootcamp E2E
 Background: 
 Given I am on the home page
 When Modal shows up
-Then I click on close button 
+Then I refresh the main page 
 
   Scenario: Search bar
 
